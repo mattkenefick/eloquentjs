@@ -1,9 +1,9 @@
 {
     "name": "eloquent-js",
-    "version": "0.2.7",
+    "version": "0.2.13",
     "description": "Laravel mock of Eloquet for Javascript",
-    "main": "dist/js/index.js",
-    "types": "dist/js/index.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "type": "module",
     "scripts": {
         "build": "tsc --skipLibCheck",
@@ -21,23 +21,24 @@
         "url": "git+https://github.com/mattkenefick/eloquentjs.git"
     },
     "files": [
+        "dist/*",
         "dist/**/*"
     ],
     "author": "Polymer Mallard LLC",
     "license": "ISC",
     "dependencies": {
-        "@types/chai": "^4.2.11",
-        "@types/lodash": "^4.14.155",
-        "@types/node": "^13.13.9",
+        "@types/chai": "^4.2.12",
+        "@types/lodash": "^4.14",
+        "@types/node": "^14.6",
         "@types/node-fetch": "^2.5.7",
         "chai": "^4.2.0",
-        "dispatcher": "github:mattkenefick/dispatcher",
+        "dispatcher": "file:///../dispatcher",
         "https": "^1.0.0",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.20",
         "mocha": "^7.2.0",
         "node-fetch": "^2.6.0",
         "ts-node": "^8.10.2",
-        "typescript": "^3.9.3"
+        "typescript": "^3.9.7"
     },
     "devDependencies": {
         "@types/expect": "^24.3.0",

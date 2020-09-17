@@ -4,24 +4,21 @@
     },
     "compileOnSave": true,
     "compilerOptions": {
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "target": "es2020",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "strict": true,
         "declaration": true,
-        "module": "system",
-        "moduleResolution": "node",
-        "noImplicitAny": true,
-        "outDir": "dist/js",
-        "preserveConstEnums": true,
-        "removeComments": true,
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "target": "es6"
+        "sourceMap": true
     },
     "exclude": [
         "node_modules",
         "**/*.spec.ts"
     ],
     "include": [
+        "src/*",
         "src/**/*"
     ],
     "scripts": {

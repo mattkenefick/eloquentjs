@@ -1,6 +1,5 @@
 
-// @ts-ignore
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 import Core from '../Core';
 import {
     IAttributes,
@@ -80,6 +79,13 @@ export default class Request extends Core
     public request?: Promise<Request | Response>;
 
     /**
+     * HTTP Timeout
+     *
+     * @type number
+     */
+    public requestTimeout: number = 1000 * 5;
+
+    /**
      * Response from fetch
      *
      * @type Response
@@ -143,12 +149,29 @@ export default class Request extends Core
         this.dispatch('requesting', this);
 
         // Log
-        // console.log('Making request as follows:', params);
+        console.log('Making request as follows five:', this.url, params);
+
+        // Abort controller
+        // @todo, we need to add this proper
+        // var controller = new AbortController();
+        // params.signal = controller.signal;
 
         // Create request
         var response = isFile
             ? this.xhrFetch(this.url, params)
             : fetch(this.url, params);
+
+        response
+            .then(() =>  console.log('fucker'))
+            .catch((e:any) => console.log(e));
+
+        // Abort, if exists
+        // setTimeout(() => {
+        //     if (controller && controller.abort) {
+        //         console.log('Aborting the request');
+        //         controller.abort();
+        //     }
+        // }, this.requestTimeout);
 
         return response
             .then(this.beforeParse.bind(this))
@@ -320,6 +343,8 @@ export default class Request extends Core
      */
     private beforeParse(response: any): Request
     {
+        console.log('Request before parse.');
+
         // Trigger
         this.dispatch('parse:before');
 
@@ -388,6 +413,9 @@ export default class Request extends Core
         // Not loading
         this.loading = false;
 
+        // Flag
+        console.log('Request fetch complete.');
+
         return request;
     }
 
@@ -407,6 +435,9 @@ export default class Request extends Core
 
             throw new Error('Failed response, after all');
         }
+
+        // Flag
+        console.log('Request complete.');
 
         return request;
     }
