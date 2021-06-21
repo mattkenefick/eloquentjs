@@ -142,7 +142,7 @@ class Collection extends ActiveRecord_1.default {
     delete(attributes = null) {
         const url = this.builder.identifier(this.id || (attributes ? attributes.id : '')).url;
         if (this.builder.id) {
-            var model = this.find(attributes);
+            var model = this.findWhere(attributes);
             this.remove(model);
         }
         const body = null;

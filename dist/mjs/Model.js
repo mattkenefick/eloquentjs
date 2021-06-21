@@ -1,24 +1,24 @@
 import ActiveRecord from './ActiveRecord';
 export default class Model extends ActiveRecord {
-    constructor(attributes = {}, options = {}) {
-        super(options);
-        this.changed = {};
-        this.fields = [];
-        this.relationships = {};
-        this.rules = [];
-        this.validationError = null;
-        this.dataKey = undefined;
-        this.relationshipCache = {};
-        this.changed = {};
-        this.cid = this.cidPrefix + Math.random().toString(36).substr(2, 5);
-        this.setHeader('Content-Type', 'application/json; charset=utf8');
-        this.set(attributes);
-    }
     static hydrate(attributes = {}, options = {}) {
         const collection = new this(options);
         collection.set(attributes);
         collection.options(options);
         return collection;
+    }
+    changed = {};
+    fields = [];
+    relationships = {};
+    rules = [];
+    validationError = null;
+    dataKey = undefined;
+    relationshipCache = {};
+    constructor(attributes = {}, options = {}) {
+        super(options);
+        this.changed = {};
+        this.cid = this.cidPrefix + Math.random().toString(36).substr(2, 5);
+        this.setHeader('Content-Type', 'application/json; charset=utf8');
+        this.set(attributes);
     }
     set(hash = {}) {
         super.set(hash, false);

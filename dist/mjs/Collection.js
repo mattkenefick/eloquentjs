@@ -2,31 +2,6 @@ import ActiveRecord from './ActiveRecord';
 import CollectionIterator from './CollectionIterator';
 import Model from './Model';
 export default class Collection extends ActiveRecord {
-    constructor(options = {}) {
-        super(options);
-        this.atRelationship = [];
-        this.index = 0;
-        this.meta = {
-            pagination: {
-                total: 0,
-                count: 15,
-                per_page: 15,
-                current_page: 1,
-                total_pages: 1,
-                links: {},
-            },
-        };
-        this.model = Model;
-        this.models = [];
-        this.dataKey = 'data';
-        this.sortKey = 'id';
-        this.builder.qp('limit', this.limit).qp('page', this.page);
-        this.setHeader('Content-Type', 'application/json; charset=utf8');
-        this.cid = this.cidPrefix + Math.random().toString(36).substr(2, 5);
-        if (options.atRelationship) {
-            this.atRelationship = options.atRelationship;
-        }
-    }
     static hydrate(models = [], options = {}) {
         const collection = new this(options);
         collection.add(models);
@@ -41,6 +16,31 @@ export default class Collection extends ActiveRecord {
     }
     get pagination() {
         return this.meta.pagination;
+    }
+    atRelationship = [];
+    index = 0;
+    meta = {
+        pagination: {
+            total: 0,
+            count: 15,
+            per_page: 15,
+            current_page: 1,
+            total_pages: 1,
+            links: {},
+        },
+    };
+    model = Model;
+    models = [];
+    dataKey = 'data';
+    sortKey = 'id';
+    constructor(options = {}) {
+        super(options);
+        this.builder.qp('limit', this.limit).qp('page', this.page);
+        this.setHeader('Content-Type', 'application/json; charset=utf8');
+        this.cid = this.cidPrefix + Math.random().toString(36).substr(2, 5);
+        if (options.atRelationship) {
+            this.atRelationship = options.atRelationship;
+        }
     }
     toJSON() {
         return JSON.parse(JSON.stringify(this.models));
@@ -126,7 +126,7 @@ export default class Collection extends ActiveRecord {
     delete(attributes = null) {
         const url = this.builder.identifier(this.id || (attributes ? attributes.id : '')).url;
         if (this.builder.id) {
-            var model = this.find(attributes);
+            var model = this.findWhere(attributes);
             this.remove(model);
         }
         const body = null;

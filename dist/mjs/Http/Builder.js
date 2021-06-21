@@ -1,15 +1,16 @@
 export default class Builder {
-    constructor(activeRecord) {
-        this.id = '';
-        this.includes = [];
-        this.queryParams = {};
-        this.activeRecord = activeRecord;
-    }
     get baseUrl() {
         return this.activeRecord.baseUrl;
     }
     get endpoint() {
         return this.activeRecord.modifiedEndpoint || this.activeRecord.endpoint;
+    }
+    id = '';
+    includes = [];
+    queryParams = {};
+    activeRecord;
+    constructor(activeRecord) {
+        this.activeRecord = activeRecord;
     }
     get queryParamsAsString() {
         let str = '';

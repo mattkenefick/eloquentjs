@@ -1,6 +1,8 @@
 import fetch from 'node-fetch';
 import Core from '../Core';
 class RequestError extends Error {
+    status;
+    text;
     constructor(status, text) {
         super(text);
         this.status = status;
@@ -8,14 +10,17 @@ class RequestError extends Error {
     }
 }
 export default class Request extends Core {
+    data = {};
+    dataKey = '';
+    headers = {};
+    loading = false;
+    method = 'get';
+    mode = '';
+    request;
+    response;
+    url;
     constructor(url, params = {}) {
         super();
-        this.data = {};
-        this.dataKey = '';
-        this.headers = {};
-        this.loading = false;
-        this.method = 'get';
-        this.mode = '';
         this.dataKey = params.dataKey;
         this.url = url;
         this.url = this.url.replace(/\?$/, '');

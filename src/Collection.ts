@@ -388,7 +388,7 @@ export default class Collection
 
         // Check for identifier
         if (this.builder.id) {
-            var model = this.find(attributes);
+            var model = this.findWhere(attributes);
             this.remove(model);
         }
 

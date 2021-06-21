@@ -110,10 +110,6 @@ class ActiveRecord extends Core_1.default {
     }
     delete(attributes = null) {
         const url = this.builder.identifier(this.id || (attributes ? attributes.id : '')).url;
-        if (this.builder.id) {
-            var model = this.find(attributes);
-            this.remove(model);
-        }
         const body = null;
         const headers = this.headers;
         const method = 'DELETE';

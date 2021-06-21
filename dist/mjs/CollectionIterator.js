@@ -1,7 +1,11 @@
 export default class CollectionIterator {
+    static ITERATOR_VALUES = 0;
+    static ITERATOR_KEYS = 1;
+    static ITERATOR_KEYSVALUES = 2;
+    index = 0;
+    collection;
+    kind = CollectionIterator.ITERATOR_VALUES;
     constructor(collection, kind = 0) {
-        this.index = 0;
-        this.kind = CollectionIterator.ITERATOR_VALUES;
         this.collection = collection;
         this.kind = kind;
         this.index = 0;
@@ -37,7 +41,4 @@ export default class CollectionIterator {
         };
     }
 }
-CollectionIterator.ITERATOR_VALUES = 0;
-CollectionIterator.ITERATOR_KEYS = 1;
-CollectionIterator.ITERATOR_KEYSVALUES = 2;
 //# sourceMappingURL=CollectionIterator.js.map
