@@ -44,7 +44,7 @@
         "chai": "^4.2.0",
         "dispatcher": "github:mattkenefick/dispatcher",
         "https": "^1.0.0",
-        "mocha": "^7.2.0",
+        "mocha": "^10.2.0",
         "node-fetch": "^2.6.0",
         "ts-node": "^9.1.1",
         "tslint": "^6.1.3",
