@@ -1,3 +1,8 @@
+# No longer maintained
+
+This project has evolved into `restmc` but is still alive for historical purposes.
+
+--------
 
 <img src="./assets/repo/logo-hero.jpg"
     alt="eloquentjs"
